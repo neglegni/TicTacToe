@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NodeTest {
+public class NodeTest {
 
     private Node root, node1, node2, node3, node4, node5, node6;
 

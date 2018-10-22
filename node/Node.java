@@ -30,10 +30,10 @@ public class Node {
     }
 
     public void setRight(Node right) {
-        if(this.right == null){
+        if((this.right == null)){
             this.right=right;
         } else {
-            right.setRight(right);
+            this.right.setRight(right);
         }
     }
 
@@ -48,7 +48,7 @@ public class Node {
     public boolean contains(Object content) {
         if (this.content == content) {
             return true;
-        } else if (this.left != null && !this.left.contains(content)) {
+        } else if (this.left != null && this.left.contains(content)) {
             return true;
         } else if (this.right != null && this.right.contains(content)) {
             return true;
@@ -58,8 +58,8 @@ public class Node {
     @Override
     public String toString() {
         if (this.isLeaf()) return "N-" + content;
-        String valueLeft = (left != null) ? "[" + left + "]":"_";
-        String valueRight = (right != null)?"[" + right + "]":"_";
+        String valueLeft = (left != null) ? "[" + left:"[_";
+        String valueRight = (right != null)?"," + right + "]":",_]";
         return "N-" + content + valueLeft + valueRight;
     }
 }
