@@ -3,10 +3,12 @@ package ticTacToe;
 public class TicTacToe {
 
     private Mark[][] ary = new Mark[3][3];
-
+    private int zuege=0;
+    private Mark zeichen1 ,zeichen2;
     /** Konstruktor */
-    public TicTacToe(){
-
+    public TicTacToe(Mark x, Mark o){
+        zeichen1 = new Mark('x');
+        zeichen2 = new Mark('o');
     }
 
     /** platziert ein Zeichen an eine die angegebene Stelle;
@@ -21,22 +23,56 @@ public class TicTacToe {
     }
 
     /** prüft ob eine Eingabe zu einem Sieg führt. */
-    public boolean hasWon(Mark zeichen, int zeile, int spalte){
-        return true;
+    public boolean hasWon(Mark zeichen){
+        if (ary[0][0]== zeichen && ary[1][1]== zeichen && ary[2][2]== zeichen){
+            return true;
+        } else if (ary[0][2]== zeichen && ary[1][1]== zeichen && ary[2][0]== zeichen){
+            return true;
+        } else if (ary[0][0]== zeichen && ary[0][1]== zeichen && ary[0][2]== zeichen){
+            return true;
+        } else if (ary[1][0]== zeichen && ary[1][1]== zeichen && ary[1][2]== zeichen){
+            return true;
+        } else if (ary[2][0]== zeichen && ary[2][1]== zeichen && ary[2][2]== zeichen){
+            return true;
+        } else if (ary[0][0]== zeichen && ary[1][0]== zeichen && ary[2][0]== zeichen){
+            return true;
+        } else if (ary[0][1]== zeichen && ary[1][1]== zeichen && ary[2][1]== zeichen){
+            return true;
+        } else if (ary[0][2]== zeichen && ary[1][2]== zeichen && ary[2][2]== zeichen){
+            return true;
+        } else  {
+            return false;
+        }
     }
 
     /** stellt das Aktuelle TicTacToe Feld in der Console dar. */
     public void printBoard(){
-        System.out.println("");
+        printLine();
+        printRows(0);
+        printLine();
+        printRows(1);
+        printLine();
+        printRows(2);
+        printLine();
     }
 
     /** stellt den Zeileninhalt des TicTacToe Feldes dar. */
-    public void printLine(){
-        System.out.println("");
+    private void printLine(){
+        System.out.println("-------------");
     }
 
     /** stellt die Spalten des TicTacToe Feldes dar. */
-    public void printRows(){
+    private void printRows(int zeile){
+        String zeichen;
+        System.out.print("|");
+        for(int i = 0; i<3;i++){
+            if(ary[zeile][i]==null){
+                zeichen=" ";
+            } else {
+                zeichen = ary[zeile][i].toString();
+            }
+            System.out.print(" "+zeichen+" |");
+        }
         System.out.println("");
     }
 }
