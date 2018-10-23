@@ -2,14 +2,8 @@ package ticTacToe;
 
 public class TicTacToe {
 
+    /** Instanzvariablen */
     private Mark[][] ary = new Mark[3][3];
-    private int zuege=0;
-    private Mark zeichen1 ,zeichen2;
-    /** Konstruktor */
-    public TicTacToe(Mark x, Mark o){
-        zeichen1 = new Mark('x');
-        zeichen2 = new Mark('o');
-    }
 
     /** platziert ein Zeichen an eine die angegebene Stelle;
      *  bei Erfolg -> return true. */
@@ -45,7 +39,7 @@ public class TicTacToe {
         }
     }
 
-    /** stellt das Aktuelle TicTacToe Feld in der Console dar. */
+    /** stellt das Aktuelle TicTacToe Feld in der Konsole dar. */
     public void printBoard(){
         printLine();
         printRows(0);

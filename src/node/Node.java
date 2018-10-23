@@ -13,8 +13,12 @@ public class Node {
         this.right = right;
     }
 
+    public Node(Object content, Node left){
+        this(content,left,null);
+    }
+
     public Node(Object content){
-        this(content, null , null);
+        this(content, null );
     }
 
     public boolean isLeaf(){

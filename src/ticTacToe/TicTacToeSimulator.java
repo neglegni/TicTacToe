@@ -10,20 +10,33 @@ public class TicTacToeSimulator {
         Mark zeichen1 = new Mark('x');
         Mark zeichen2 = new Mark('o');
         int rundeCounter = 0;
-        TicTacToe t = new TicTacToe(zeichen1, zeichen2);
+        TicTacToe t = new TicTacToe();
         t.printBoard();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Willkommen, wer schummelt setzt aus!");
+        /** Spiel läuft bis jemand gewonnnen hat oder Alle Felder belegt sind. */
         while (!t.hasWon(zeichen1) && !t.hasWon(zeichen2) && rundeCounter < 9) {
             boolean korrekterZug;
-
+            // bestimmt den aktuellen Spieler.
             if (rundeCounter % 2 == 0) {
+                int zeile;
                 System.out.println("In welche Zeile soll das Zeichen gesetzt werden?");
-                int zeile = sc.nextInt();
+                if (sc.hasNextInt()){
+                    zeile = sc.nextInt();
+                } else {
+                    System.out.println("Nur Ganze Zahlen erlaubt");
+                    sc.next();
+                    continue;
+                }
+
                 System.out.println("In welche Spalte soll das Zeichen gesetzt werden?");
+                while (!sc.hasNextInt()){
+                    System.out.println("Nur Ganze Zahlen erlaubt");
+                    sc.next();
+                }
                 int spalte = sc.nextInt();
                 System.out.println("du hast zeile " + zeile + " und spalte " + spalte + " gewählt");
                 korrekterZug = (t.place(zeichen1, zeile, spalte));
+                // prüft ob der Zug wiederholt werden muss
                 if (korrekterZug) {
                     rundeCounter++;
                 } else {
