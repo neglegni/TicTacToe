@@ -14,11 +14,11 @@ public class TicTacToe {
     /** platziert ein Zeichen an eine die angegebene Stelle;
      *  bei Erfolg -> return true. */
     public boolean place(Mark zeichen, int zeile, int spalte) {
-        if (ary[zeile][spalte]!=null && zeile < 0 && zeile > 2&& spalte < 0 && spalte >2) {
-                return false;
-        } else {
+        if (ary[zeile][spalte]==null && zeile >= 0 && zeile <= 2&& spalte >= 0 && spalte <=2) {
             ary[zeile][spalte]=zeichen;
             return true;
+        } else {
+            return false;
         }
     }
 
