@@ -3,9 +3,7 @@ package ticTacToe;
 import java.util.Scanner;
 
 public class TicTacToeDialog {
-
-
-
+//Fehler abfangen und Computer gegen Computer spielen lassen.
     public static void main(String[] args) {
         Mark zeichen1 = new Mark('x');
         Mark zeichen2 = new Mark('o');
@@ -17,18 +15,28 @@ public class TicTacToeDialog {
         /** Spiel läuft bis jemand gewonnnen hat oder Alle Felder belegt sind. */
         while (!t.hasWon(zeichen1) && !t.hasWon(zeichen2) && rundeCounter < 9) {
             boolean korrekterZug;
-            System.out.println("In welche Zeile soll das Zeichen gesetzt werden?");
-            int zeile = sc.nextInt();
-            System.out.println("In welche Spalte soll das Zeichen gesetzt werden?");
-            int spalte = sc.nextInt();
-            System.out.println("du hast zeile " + zeile + " und spalte " + spalte + " gewählt");
-
             // bestimmt den aktuellen Spieler.
+            System.out.println("In welche Zeile soll das Zeichen gesetzt werden?");
+            while(!sc.hasNextInt()){
+                System.out.println("Nur Ganze Zahlen");
+                sc.next();
+            }
+            int zeile = sc.nextInt();
+
+            System.out.println("In welche Spalte soll das Zeichen gesetzt werden?");
+            while(!sc.hasNextInt()){
+                System.out.println("Nur Ganze Zahlen");
+                sc.next();
+            }
+            int spalte = sc.nextInt();
+
             if (rundeCounter % 2 == 0) {
                 korrekterZug = (t.place(zeichen1, zeile, spalte));
             } else {
                 korrekterZug = (t.place(zeichen2, zeile, spalte));
             }
+
+            System.out.println("du hast zeile " + zeile + " und spalte " + spalte + " gewählt");
 
             t.printBoard();
 

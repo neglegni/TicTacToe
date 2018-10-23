@@ -16,7 +16,9 @@ public class TicTacToe {
         }
     }
 
-    /** prüft ob eine Eingabe zu einem Sieg führt. */
+    /** prüft ob eine Eingabe zu einem Sieg führt.
+     * For-Schleife basteln*/
+
     public boolean hasWon(Mark zeichen){
         if (ary[0][0]== zeichen && ary[1][1]== zeichen && ary[2][2]== zeichen){
             return true;
@@ -41,32 +43,42 @@ public class TicTacToe {
 
     /** stellt das Aktuelle TicTacToe Feld in der Konsole dar. */
     public void printBoard(){
-        printLine();
-        printRows(0);
-        printLine();
-        printRows(1);
-        printLine();
-        printRows(2);
-        printLine();
+        int anzahlZeichen = 3;
+        printLine(anzahlZeichen);
+        printRows(0,anzahlZeichen);
+        printLine(anzahlZeichen);
+        printRows(1,anzahlZeichen);
+        printLine(anzahlZeichen);
+        printRows(2,anzahlZeichen);
+        printLine(anzahlZeichen);
+    }
+
+   public String charMultiplikator(int anzahlZeichen,char c){
+        String mult = "";
+        for (int i =0; i < anzahlZeichen; i++) {
+                     mult+=c;
+        }
+        return mult;
     }
 
     /** stellt den Zeileninhalt des TicTacToe Feldes dar. */
-    private void printLine(){
-        System.out.println("-------------");
+    private void printLine(int anzahlZeichen){
+        System.out.println(this.charMultiplikator(anzahlZeichen*ary.length+2,'-'));
     }
 
-    /** stellt die Spalten des TicTacToe Feldes dar. */
-    private void printRows(int zeile){
-        String zeichen;
+    /** stellt die Spalten des TicTacToe Feldes dar.
+     * Methode schreiben die uns Leerzeichen bzw Strich liefert */
+    private void printRows(int zeile, int anzahlZeichen){
         System.out.print("|");
         for(int i = 0; i<3;i++){
             if(ary[zeile][i]==null){
-                zeichen=" ";
+                System.out.print(charMultiplikator(anzahlZeichen,' '));
             } else {
-                zeichen = ary[zeile][i].toString();
+                System.out.print(charMultiplikator(anzahlZeichen/2,' '));
+                System.out.print(ary[zeile][i]);
+                System.out.print(charMultiplikator(anzahlZeichen/2,' '));
             }
-            System.out.print(" "+zeichen+" |");
         }
-        System.out.println("");
+        System.out.println("|");
     }
 }
