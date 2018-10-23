@@ -3,9 +3,7 @@ package ticTacToe;
 import java.util.Scanner;
 
 public class TicTacToeDialog {
-
-
-
+//Fehler abfangen und Computer gegen Computer spielen lassen.
     public static void main(String[] args) {
         Mark zeichen1 = new Mark('x');
         Mark zeichen2 = new Mark('o');

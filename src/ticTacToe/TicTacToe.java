@@ -3,7 +3,6 @@ package ticTacToe;
 public class TicTacToe {
 
     private Mark[][] ary = new Mark[3][3];
-    private int zuege=0;
     private Mark zeichen1 ,zeichen2;
     /** Konstruktor */
     public TicTacToe(Mark x, Mark o){
@@ -22,7 +21,9 @@ public class TicTacToe {
         }
     }
 
-    /** prüft ob eine Eingabe zu einem Sieg führt. */
+    /** prüft ob eine Eingabe zu einem Sieg führt.
+     * For-Schleife basteln*/
+
     public boolean hasWon(Mark zeichen){
         if (ary[0][0]== zeichen && ary[1][1]== zeichen && ary[2][2]== zeichen){
             return true;
@@ -47,32 +48,51 @@ public class TicTacToe {
 
     /** stellt das Aktuelle TicTacToe Feld in der Console dar. */
     public void printBoard(){
-        printLine();
-        printRows(0);
-        printLine();
-        printRows(1);
-        printLine();
-        printRows(2);
-        printLine();
+        int anzahlZeichen = 3;
+        printLine(anzahlZeichen);
+        printRows(0,anzahlZeichen);
+        printLine(anzahlZeichen);
+        printRows(1,anzahlZeichen);
+        printLine(anzahlZeichen);
+        printRows(2,anzahlZeichen);
+        printLine(anzahlZeichen);
     }
 
     /** stellt den Zeileninhalt des TicTacToe Feldes dar. */
-    private void printLine(){
-        System.out.println("-------------");
+    private void printLine(int anzahlZeichen){
+        String strich;
+        StringBuilder leerzeichenBuilder = new StringBuilder();
+        for(int i = 0; i <= anzahlZeichen;i++){
+            leerzeichenBuilder.append("-------");
+        }
+        strich=leerzeichenBuilder.toString();
+
+        System.out.println(""+strich);
     }
 
-    /** stellt die Spalten des TicTacToe Feldes dar. */
-    private void printRows(int zeile){
+    /** stellt die Spalten des TicTacToe Feldes dar.
+     * Methode schreiben die uns Leerzeichen bzw Strich liefert */
+    private void printRows(int zeile, int anzahlZeichen){
         String zeichen;
         System.out.print("|");
+        String leerzeichen;
+        StringBuilder leerzeichenBuilder = new StringBuilder(" ");
+        if (anzahlZeichen==0){
+            leerzeichen = "";
+        } else {
+            for(int i = 0; i < anzahlZeichen;i++){
+                leerzeichenBuilder.append(" ");
+            }
+            leerzeichen=leerzeichenBuilder.toString();
+        }
         for(int i = 0; i<3;i++){
             if(ary[zeile][i]==null){
                 zeichen=" ";
             } else {
                 zeichen = ary[zeile][i].toString();
             }
-            System.out.print(" "+zeichen+" |");
+            System.out.print(leerzeichen+zeichen+leerzeichen+"|");
         }
-        System.out.println("");
+        System.out.println(" ");
     }
 }
