@@ -19,26 +19,30 @@ public class TicTacToe {
     /** prüft ob eine Eingabe zu einem Sieg führt.
      * For-Schleife basteln*/
 
-    public boolean hasWon(Mark zeichen){
-        if (ary[0][0]== zeichen && ary[1][1]== zeichen && ary[2][2]== zeichen){
-            return true;
-        } else if (ary[0][2]== zeichen && ary[1][1]== zeichen && ary[2][0]== zeichen){
-            return true;
-        } else if (ary[0][0]== zeichen && ary[0][1]== zeichen && ary[0][2]== zeichen){
-            return true;
-        } else if (ary[1][0]== zeichen && ary[1][1]== zeichen && ary[1][2]== zeichen){
-            return true;
-        } else if (ary[2][0]== zeichen && ary[2][1]== zeichen && ary[2][2]== zeichen){
-            return true;
-        } else if (ary[0][0]== zeichen && ary[1][0]== zeichen && ary[2][0]== zeichen){
-            return true;
-        } else if (ary[0][1]== zeichen && ary[1][1]== zeichen && ary[2][1]== zeichen){
-            return true;
-        } else if (ary[0][2]== zeichen && ary[1][2]== zeichen && ary[2][2]== zeichen){
-            return true;
-        } else  {
-            return false;
+    public boolean hasWon(Mark zeichen, int zeile, int spalte){
+        int spaltenSieg = 0;
+        int zeilenSieg = 0;
+        int diagonalSiegL = 0;
+        int diagonalSiegR = 0;
+        int j = 2;
+        for (int i = 0;i<3;i++){
+            if (ary[zeile][i]== zeichen){
+                zeilenSieg++;
+            }
+            if (ary[i][spalte]==zeichen){
+                spaltenSieg++;
+            }
+            if (ary[i][i]==zeichen){
+                diagonalSiegL++;
+            }
+            if (ary[i][j]==zeichen){
+                diagonalSiegR++;
+            }
+            j--;
         }
+        if (zeilenSieg==3||spaltenSieg==3||diagonalSiegL==3||diagonalSiegR==3){
+            return true;
+        } else return false;
     }
 
     /** stellt das Aktuelle TicTacToe Feld in der Konsole dar. */

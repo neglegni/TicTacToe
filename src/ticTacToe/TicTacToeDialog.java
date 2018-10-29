@@ -7,13 +7,14 @@ public class TicTacToeDialog {
     public static void main(String[] args) {
         Mark zeichen1 = new Mark('x');
         Mark zeichen2 = new Mark('o');
+        int zeile = 0, spalte = 0;
         int rundeCounter = 0;
         TicTacToe t = new TicTacToe();
         t.printBoard();
         Scanner sc = new Scanner(System.in);
 
         /** Spiel läuft bis jemand gewonnnen hat oder Alle Felder belegt sind. */
-        while (!t.hasWon(zeichen1) && !t.hasWon(zeichen2) && rundeCounter < 9) {
+        while (!t.hasWon(zeichen1,zeile,spalte) && !t.hasWon(zeichen2,zeile,spalte) && rundeCounter < 9) {
             boolean korrekterZug;
             // bestimmt den aktuellen Spieler.
             System.out.println("In welche Zeile soll das Zeichen gesetzt werden?");
@@ -21,14 +22,14 @@ public class TicTacToeDialog {
                 System.out.println("Nur Ganze Zahlen");
                 sc.next();
             }
-            int zeile = sc.nextInt();
+            zeile = sc.nextInt();
 
             System.out.println("In welche Spalte soll das Zeichen gesetzt werden?");
             while(!sc.hasNextInt()){
                 System.out.println("Nur Ganze Zahlen");
                 sc.next();
             }
-            int spalte = sc.nextInt();
+            spalte = sc.nextInt();
 
             if (rundeCounter % 2 == 0) {
                 korrekterZug = (t.place(zeichen1, zeile, spalte));
@@ -49,9 +50,9 @@ public class TicTacToeDialog {
         }
 
         // Ausgabe für Sieg oder Unentschieden.
-        if(t.hasWon(zeichen1)){
+        if(t.hasWon(zeichen1,zeile,spalte)){
              System.out.println("Spieler " + zeichen1 + " hat gewonnn!");
-        } else if (t.hasWon(zeichen2)) {
+        } else if (t.hasWon(zeichen2,zeile,spalte)) {
             System.out.println("Spieler " + zeichen2 + " hat gewonnn!");
         } else {
             System.out.println("Unentschieden, Spiel vorbei!");

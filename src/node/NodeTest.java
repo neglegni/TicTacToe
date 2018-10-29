@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NodeTest {
 
+
     private Node root, node1, node2, node3, node4, node5, node6;
 
     @Before
